@@ -1,13 +1,12 @@
 let score = 0;
 let clickRate = 1;
-
 let upgradeLevel1 = 0;
 let upgradeCost1 = 10;
-const COST_MULTIPLIER = 1.25;
-const BASE_COST_1 = 10;
-
 let upgradeLevel2 = 0;
 let upgradeCost2 = 50;
+
+const COST_MULTIPLIER = 1.25;
+const BASE_COST_1 = 10;
 const BASE_COST_2 = 50;
 const CLICK_INCREMENT_MULTIPLIER = 1.2;
 const CLICK_INCREMENT_FIXED = 1;
@@ -16,7 +15,6 @@ const CPS_FIXED_GAIN = 1;
 const CPS_THRESHOLD = 10;
 const CPS_MULTIPLIER = 1.1;
 
-// --- ÉLÉMENTS DU DOM ---
 const scoreDisplay = document.getElementById("score");
 const cailleImage = document.getElementById("caille-image");
 const clickRateDisplay = document.getElementById("click-rate");
@@ -42,7 +40,7 @@ function loadGame() {
     upgradeCost2 = Math.round(
       BASE_COST_2 * Math.pow(COST_MULTIPLIER, upgradeLevel2)
     );
-    clickRate = calculateClickRate(upgradeLevel2); // <-- Utilisation de la nouvelle fonction
+    clickRate = calculateClickRate(upgradeLevel2);
 
     console.log(
       "Jeu chargé. Score:",
@@ -56,9 +54,6 @@ function loadGame() {
   updateDisplay();
 }
 
-/**
- * Sauvegarde l'état actuel du jeu dans le stockage local.
- */
 function saveGame() {
   const dataToSave = {
     score: score,
@@ -69,55 +64,33 @@ function saveGame() {
 }
 
 function calculateClickRate(level) {
-  let rate = 1; // Gain de base (sans amélioration) est toujours 1
+  let rate = 1; 
 
   if (level <= CLICK_THRESHOLD) {
-    // Gain fixe : 1 Caille/clic par niveau jusqu'au seuil
     rate += level * CLICK_INCREMENT_FIXED;
   } else {
-    // 1. Appliquer le gain fixe pour les niveaux sous le seuil
     let initialGain = CLICK_THRESHOLD * CLICK_INCREMENT_FIXED;
-
-    // 2. Multiplier ce gain par le facteur exponentiel pour les niveaux au-dessus
     const multiplierLevels = level - CLICK_THRESHOLD;
     rate +=
       initialGain * Math.pow(CLICK_INCREMENT_MULTIPLIER, multiplierLevels);
   }
-
-  // On retourne un entier pour éviter les décimales
   return Math.round(rate);
 }
 
-// --- FONCTIONS DE JEU ---
-
-/**
- * Met à jour tous les éléments affichés à l'écran.
- */
 function updateDisplay() {
   clickRate = calculateClickRate(upgradeLevel2);
-  // Affichage des nombres (arrondi à 0 décimale pour le score)
   scoreDisplay.textContent = Math.round(score).toLocaleString("fr-FR");
   clickRateDisplay.textContent = clickRate.toLocaleString("fr-FR");
   upgradeCost1Display.textContent = upgradeCost1.toLocaleString("fr-FR");
   let totalCPS = 0;
 
   if (upgradeLevel1 <= CPS_THRESHOLD) {
-    // Gain fixe : 1 Caille/seconde par niveau jusqu'au niveau 10
     totalCPS = upgradeLevel1 * CPS_FIXED_GAIN;
   } else {
-    // Gain multiplicatif : Après le niveau 10
-    // Le gain est la valeur fixe du seuil (10) multiplié par la puissance du multiplicateur
-    // pour les niveaux au-delà du seuil.
-
-    // Gain initial (les 10 premiers niveaux)
     totalCPS = CPS_THRESHOLD * CPS_FIXED_GAIN;
-
-    // Application du multiplicateur aux niveaux suivants
     const multiplierLevels = upgradeLevel1 - CPS_THRESHOLD;
     totalCPS *= Math.pow(CPS_MULTIPLIER, multiplierLevels);
   }
-
-  // Affichage du CPS avec Math.floor() pour garantir un entier
   cpsRateDisplay.textContent = Math.round(totalCPS).toLocaleString("fr-FR", {
     minimumFractionDigits: 0,
     maximumFractionDigits: 0,
@@ -125,13 +98,11 @@ function updateDisplay() {
 
   if (score >= upgradeCost1) {
     buyUpgrade1Button.disabled = false;
-    // La ligne suivante change le texte du bouton s'il est actif
     buyUpgrade1Button.textContent = `Acheter (${upgradeCost1.toLocaleString(
       "fr-FR"
     )})`;
   } else {
     buyUpgrade1Button.disabled = true;
-    // La ligne suivante change le texte du bouton s'il est désactivé
     buyUpgrade1Button.textContent = `Pas assez de Caille!`;
   }
 
@@ -209,7 +180,7 @@ function resetGame() {
 
   updateDisplay();
 
-  alert("Progression de Caille Clicker réinitialisée avec succès !");
+  alert("Progression de CliCaille réinitialisée avec succès !");
 }
 
 function autoClicker() {
@@ -231,8 +202,6 @@ function autoClicker() {
 
 setInterval(autoClicker, 3000);
 
-// --- INITIALISATION DU JEU ---
-
 loadGame();
 
 cailleImage.addEventListener("click", clickCaille);
@@ -240,3 +209,4 @@ buyUpgrade1Button.addEventListener("click", buyUpgrade1);
 buyUpgrade2Button.addEventListener("click", buyUpgrade2);
 resetButton.addEventListener("click", resetGame);
 setInterval(saveGame, 15000);
+
