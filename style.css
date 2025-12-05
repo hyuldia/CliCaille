@@ -4,8 +4,8 @@ body {
   flex-direction: column;
   align-items: center;
   text-align: center;
-  background-color: #f0f0f0;
-  color: #333;
+  background-color: #313131;
+  color: #ededed;
   margin: 0;
   padding: 20px;
 }
@@ -38,7 +38,7 @@ body {
   padding: 20px;
   border: 1px solid #ccc;
   border-radius: 10px;
-  background-color: #fff;
+  background-color: #414040;
   width: 100%;
   box-sizing: border-box; 
   margin-top: 0;
@@ -59,8 +59,9 @@ body {
 
 #score-container {
   font-size: 2.5em;
-  margin-bottom: 20px;
-  color: #7a00ff; 
+  margin-bottom: 1vh;
+  margin-top: 1vh;
+  color: #effbfd; 
   font-weight: bold;
 }
 
@@ -133,4 +134,5 @@ body {
     transform: translateY(-250px) scale(0.6) rotate(15deg);
   }
 }
+
 
