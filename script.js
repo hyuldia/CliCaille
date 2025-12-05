@@ -64,7 +64,7 @@ function saveGame() {
 }
 
 function calculateClickRate(level) {
-  let rate = 1; 
+  let rate = 1;
 
   if (level <= CLICK_THRESHOLD) {
     rate += level * CLICK_INCREMENT_FIXED;
@@ -103,7 +103,7 @@ function updateDisplay() {
     )})`;
   } else {
     buyUpgrade1Button.disabled = true;
-    buyUpgrade1Button.textContent = `Pas assez de Caille!`;
+    buyUpgrade1Button.textContent = `Pas assez de Caille !`;
   }
 
   upgradeCost2Display.textContent = upgradeCost2.toLocaleString("fr-FR");
@@ -200,7 +200,7 @@ function autoClicker() {
   updateDisplay();
 }
 
-setInterval(autoClicker, 3000);
+setInterval(autoClicker, 1000);
 
 loadGame();
 
@@ -209,4 +209,3 @@ buyUpgrade1Button.addEventListener("click", buyUpgrade1);
 buyUpgrade2Button.addEventListener("click", buyUpgrade2);
 resetButton.addEventListener("click", resetGame);
 setInterval(saveGame, 15000);
-
