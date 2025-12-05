@@ -11,66 +11,62 @@ body {
 }
 
 #game-layout {
-  display: flex; /* Active Flexbox */
-  justify-content: center; /* Centre les deux colonnes */
-  align-items: flex-start; /* Aligne les éléments en haut */
-  gap: 40px; /* Ajoute un espace entre la colonne gauche et droite */
-  width: 90%; /* Limite la largeur du conteneur du jeu */
-  max-width: 900px; /* Largeur maximale pour un grand écran */
+  display: flex; 
+  justify-content: center; 
+  align-items: flex-start; 
+  gap: 40px; 
+  width: 90%; 
+  max-width: 900px; 
   margin-top: 20px;
 }
 
-/* Styles pour la colonne de gauche (Clic) */
 #left-column {
-  flex: 1; /* Prend une partie de l'espace disponible */
-  min-width: 300px; /* Assure une largeur minimale pour la zone de clic */
+  flex: 1; 
+  min-width: 300px; 
   text-align: center;
-  order: 1; /* S'assure qu'elle est à gauche */
+  order: 1;
 }
 
-/* Styles pour la colonne de droite (Améliorations) */
 #right-column {
-  flex: 1; /* Prend une partie de l'espace disponible */
-  min-width: 350px; /* Assure une largeur minimale pour la colonne d'améliorations */
+  flex: 1; 
+  min-width: 350px; 
   text-align: center;
-  order: 2; /* S'assure qu'elle est à droite */
+  order: 2; 
 }
 
-/* Ajuster le conteneur d'upgrades pour qu'il remplisse l'espace */
 #upgrades-container {
   padding: 20px;
   border: 1px solid #ccc;
   border-radius: 10px;
   background-color: #fff;
-  width: 100%; /* Important : remplit la #right-column */
-  box-sizing: border-box; /* Inclut padding et border dans la largeur */
+  width: 100%;
+  box-sizing: border-box; 
   margin-top: 0;
 }
 
-/* --- RÈGLES RESPONSIVES (optionnel) --- */
 @media (max-width: 768px) {
   #game-layout {
-    flex-direction: column; /* Empile les colonnes sur les petits écrans */
+    flex-direction: column; 
     gap: 20px;
   }
 
   #left-column,
   #right-column {
     min-width: unset;
-    width: 100%; /* Prennent toute la largeur */
+    width: 100%;
   }
 }
 
 #score-container {
   font-size: 2.5em;
   margin-bottom: 20px;
-  color: #7a00ff; /* Couleur pour le score */
+  color: #7a00ff; 
   font-weight: bold;
 }
 
 #caille-image {
   cursor: pointer;
-  width: 250px; /* Ajustez la taille de l'image si nécessaire */
+  width: 250px; 
   height: auto;
   border: 5px solid transparent;
   border-radius: 50%;
@@ -78,7 +74,6 @@ body {
 }
 
 #caille-image:active {
-  /* Effet lorsque l'on clique */
   transform: scale(0.95);
   box-shadow: 0 0 15px rgba(122, 0, 255, 0.8);
 }
@@ -138,3 +133,4 @@ body {
     transform: translateY(-250px) scale(0.6) rotate(15deg);
   }
 }
+
