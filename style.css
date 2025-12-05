@@ -1,0 +1,140 @@
+body {
+  font-family: sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background-color: #f0f0f0;
+  color: #333;
+  margin: 0;
+  padding: 20px;
+}
+
+#game-layout {
+  display: flex; /* Active Flexbox */
+  justify-content: center; /* Centre les deux colonnes */
+  align-items: flex-start; /* Aligne les éléments en haut */
+  gap: 40px; /* Ajoute un espace entre la colonne gauche et droite */
+  width: 90%; /* Limite la largeur du conteneur du jeu */
+  max-width: 900px; /* Largeur maximale pour un grand écran */
+  margin-top: 20px;
+}
+
+/* Styles pour la colonne de gauche (Clic) */
+#left-column {
+  flex: 1; /* Prend une partie de l'espace disponible */
+  min-width: 300px; /* Assure une largeur minimale pour la zone de clic */
+  text-align: center;
+  order: 1; /* S'assure qu'elle est à gauche */
+}
+
+/* Styles pour la colonne de droite (Améliorations) */
+#right-column {
+  flex: 1; /* Prend une partie de l'espace disponible */
+  min-width: 350px; /* Assure une largeur minimale pour la colonne d'améliorations */
+  text-align: center;
+  order: 2; /* S'assure qu'elle est à droite */
+}
+
+/* Ajuster le conteneur d'upgrades pour qu'il remplisse l'espace */
+#upgrades-container {
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background-color: #fff;
+  width: 100%; /* Important : remplit la #right-column */
+  box-sizing: border-box; /* Inclut padding et border dans la largeur */
+  margin-top: 0;
+}
+
+/* --- RÈGLES RESPONSIVES (optionnel) --- */
+@media (max-width: 768px) {
+  #game-layout {
+    flex-direction: column; /* Empile les colonnes sur les petits écrans */
+    gap: 20px;
+  }
+
+  #left-column,
+  #right-column {
+    min-width: unset;
+    width: 100%; /* Prennent toute la largeur */
+  }
+}
+
+#score-container {
+  font-size: 2.5em;
+  margin-bottom: 20px;
+  color: #7a00ff; /* Couleur pour le score */
+  font-weight: bold;
+}
+
+#caille-image {
+  cursor: pointer;
+  width: 250px; /* Ajustez la taille de l'image si nécessaire */
+  height: auto;
+  border: 5px solid transparent;
+  border-radius: 50%;
+  transition: transform 0.1s, box-shadow 0.1s;
+}
+
+#caille-image:active {
+  /* Effet lorsque l'on clique */
+  transform: scale(0.95);
+  box-shadow: 0 0 15px rgba(122, 0, 255, 0.8);
+}
+
+#upgrades-container {
+  margin-top: 30px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background-color: #fff;
+  width: 90%;
+  max-width: 400px;
+}
+
+.upgrade-item h3 {
+  margin-top: 0;
+}
+
+.upgrade-button {
+  padding: 10px 20px;
+  font-size: 1em;
+  cursor: pointer;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  transition: background-color 0.2s;
+  margin: 1vh 1vh 3vh 1vh;
+}
+
+.upgrade-button:hover:not(:disabled) {
+  background-color: #0056b3;
+}
+
+.upgrade-button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+.floating-caille-image {
+  position: absolute;
+  width: 50px;
+  height: auto;
+  border-radius: 25%;
+  z-index: 1000;
+  pointer-events: none;
+  animation: floatUpAndFade 1.2s cubic-bezier(0.17, 0.84, 0.44, 1) forwards;
+}
+
+@keyframes floatUpAndFade {
+  0% {
+    opacity: 1;
+    transform: translateY(0) scale(1) rotate(0deg);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-250px) scale(0.6) rotate(15deg);
+  }
+}

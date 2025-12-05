@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Caille Clicker</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main>
+      <div id="score-container"><span id="score">0</span> Caille</div>
+
+      <div id="game-layout">
+        <div id="left-column">
+          <div id="click-area">
+            <img
+              src="assets/caille_asset.png"
+              alt="Caille à cliquer"
+              id="caille-image"
+            />
+          </div>
+
+          <div id="game-info">
+            <p>Gain par clic : <span id="click-rate">1</span></p>
+            <p>Caille/seconde (CPS) : <span id="cps-rate">0</span></p>
+          </div>
+
+          <hr />
+          <section id="reset-area">
+            <button
+              id="reset-button"
+              class="upgrade-button"
+              style="background-color: #dc3545"
+            >
+              Réinitialiser la progression
+            </button>
+          </section>
+        </div>
+
+        <div id="right-column">
+          <section id="upgrades-container">
+            <h2>Améliorations</h2>
+            <div class="upgrade-item">
+              <h3>Auto-Caille</h3>
+              <p>Gagne des Caille automatiquement toutes les 3 secondes.</p>
+              <p>Coût actuel : <span id="upgrade-cost-1">10</span> Caille</p>
+              <button id="buy-upgrade-1" class="upgrade-button" disabled>
+                Acheter
+              </button>
+            </div>
+            <div class="upgrade-item">
+              <h3>Super Clic</h3>
+              <p>Augmente le gain par clic.</p>
+              <p>Coût actuel : <span id="upgrade-cost-2">50</span> Caille</p>
+              <button id="buy-upgrade-2" class="upgrade-button" disabled>
+                Acheter
+              </button>
+            </div>
+          </section>
+        </div>
+      </div>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
